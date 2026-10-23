@@ -188,7 +188,7 @@
         <h2>5. 보관·삭제 및 이용자 요청</h2>
         <ul>
           <li><strong>기기 저장 정보:</strong> 앱 삭제 또는 앱 데이터 삭제 시 기기 내 진행·설정·대기열이 삭제됩니다. 이미 서버로 전송된 정보는 자동 삭제되지 않습니다.</li>
-          <li><strong>서버의 원본 이벤트:</strong> 수신 후 30일이 지나면 정리합니다. 종료된 시도의 상세 JSON도 30일 뒤 축약하지만 시도 ID와 결과는 남을 수 있습니다.</li>
+          <li><strong>서버의 원본 이벤트:</strong> 정기 작업으로 수신 후 30일이 지난 기록을 정리합니다(서비스 일시중지 시 작업 재개까지 지연될 수 있습니다). 종료된 시도의 상세 JSON도 같은 방식으로 축약하지만 시도 ID와 결과는 남을 수 있습니다.</li>
           <li><strong>집계·평가·제보 등:</strong> 일별 통계, 설치별 클리어·힌트 기록, 평가·제보 및 중복 방지 정보는 게임 운영·품질 개선에 필요한 기간 동안 보관하고, 목적 종료 또는 서비스 종료 시 삭제·비식별화합니다. 법령상 보존 의무가 있으면 해당 기간을 따릅니다.</li>
         </ul>
         <p>전송된 정보의 확인·삭제를 원하면 아래 이메일로 요청해 주세요. 계정이 없는 게임이므로 요청한 기록을 식별·확인할 수 있는 정보를 안내받아 가능한 범위에서 처리합니다. 앱 삭제만으로 서버 기록의 삭제를 요청한 것으로 처리되지는 않습니다. Google이 처리하는 광고 정보와 선택은 Google의 안내 및 기기 광고 설정을 이용해 주세요.</p>
@@ -254,7 +254,7 @@
         <h2>5. Retention, deletion and requests</h2>
         <ul>
           <li><strong>On-device data:</strong> Uninstalling the App or clearing its data removes local progress, settings and queued uploads. It does not automatically erase records already received by the server.</li>
-          <li><strong>Raw server events:</strong> Removed 30 days after receipt. Detailed JSON for completed attempts is reduced after 30 days, while attempt IDs and outcomes may remain.</li>
+          <li><strong>Raw server events:</strong> A scheduled job removes records older than 30 days after receipt (cleanup may be delayed while the service is paused). Detailed JSON for completed attempts is reduced in the same way, while attempt IDs and outcomes may remain.</li>
           <li><strong>Aggregates, ratings and reports:</strong> Daily statistics, installation-level clear and hint records, ratings, reports and deduplication data are kept while needed to operate and improve the game, then deleted or de-identified when that purpose or the service ends, subject to any legal retention requirement.</li>
         </ul>
         <p>To ask about or request deletion of uploaded data, email us below. As the game has no account, we will explain what information is needed to identify and verify the relevant record and act where possible. Uninstalling alone does not submit a server deletion request. For Google ad data and choices, consult Google's notices and your device's ad settings.</p>
