@@ -134,7 +134,7 @@
     <header>
       <div class="eyebrow">BLACKOUT CITY · PRIVACY POLICY</div>
       <h1>개인정보처리방침 / Privacy Policy</h1>
-      <div class="meta">시행일 (Effective Date): 2026-10-23 · 최종 수정일 (Last Updated): 2026-10-23</div>
+      <div class="meta">시행일 (Effective Date): 2026-10-23 · 최종 수정일 (Last Updated): 2026-10-24</div>
       <nav class="lang-switch" aria-label="언어 선택">
         <a href="#ko">한국어 (Korean)</a>
         <a href="#en">English</a>
@@ -144,77 +144,64 @@
     <!-- KOREAN SECTION -->
     <div id="ko">
       <section>
-        <h2>1. 개요</h2>
-        <p><strong>BLACKOUT CITY</strong>(이하 "앱")는 이용자의 개인정보를 소중하게 생각하며, 관련 법령 및 Google Play 개발자 프로그램 정책을 준수합니다. 본 앱은 회원가입이나 계정 로그인 없이 플레이할 수 있는 퍼즐 게임으로, 실명·이메일·전화번호·정확한 위치 정보 등 이용자 개인을 직접 식별할 수 있는 정보를 요구하거나 수집하지 않습니다.</p>
+        <h2>1. 적용 범위</h2>
+        <p><strong>BLACKOUT CITY</strong>(이하 “앱”)는 계정 가입 없이 플레이하는 퍼즐 게임입니다. 이 방침은 게임 자체의 진행 저장, 플레이 분석·평가·제보 전송, Android 광고 기능에 적용됩니다. 앱은 가입을 위해 이름·이메일·전화번호·정확한 위치를 요구하지 않지만, 설치별 플레이 기록과 이용자가 직접 적은 제보 내용은 개인정보에 해당할 수 있어 아래와 같이 처리합니다.</p>
       </section>
 
       <section>
-        <h2>2. 수집 및 전송하는 데이터 항목</h2>
-        <h3>가. 기기 내 로컬 저장 데이터 (외부 전송 없음)</h3>
+        <h2>2. 기기 저장 및 Supabase 전송</h2>
+        <h3>기기에 저장하는 정보</h3>
+        <p>스테이지 진행·최소 턴 기록, 배터리 상태, 언어·소리·진동·화면 설정, 제출한 평가·제보의 상태를 기기에 저장합니다. 진행 저장 파일 전체를 서버에 복사하지는 않습니다. 네트워크가 끊기면 분석·제보 전송 대기열도 기기에 저장하고, 앱을 다시 실행하거나 복귀했을 때 재시도합니다. 앱이 완전히 종료된 동안에는 이 대기열을 전송하지 않습니다.</p>
+        <h3>플레이 중 자동 전송하는 정보</h3>
+        <p>현재 베타에서는 별도의 제출 버튼을 누르지 않아도 다음 게임 이용 기록이 HTTPS로 <strong>Supabase</strong>에 전송됩니다.</p>
         <ul>
-          <li>캠페인·밤마실·실험실 스테이지 클리어 진행도 및 최단 턴 기록</li>
-          <li>언어 설정, 음악·효과음 음량, 진동 및 화면 연출 설정</li>
+          <li>앱 실행·세션 시작/종료, 스테이지 입장·종료·첫/반복 클리어, 이야기 시작·종료</li>
+          <li>스테이지·규칙 버전, 게임 모드, 앱 버전·언어, 시도 시각과 결과, 턴·이동·능력·되돌리기·힌트 사용 횟수 및 활성 플레이 시간 등의 요약</li>
+          <li>광고 요청·표시·닫기·보상·실패, 배터리 사용·차단·광고 충전 결과, 전송 대기열의 상태</li>
+          <li>같은 앱 설치에서 발생한 기록을 연결하고 중복 수신을 막기 위한 무작위 설치 토큰, 세션·시도·요청 ID 및 순번. 서버의 설치 식별자는 원본 토큰이 아닌 SHA-256 해시입니다.</li>
         </ul>
-        <h3>나. 서버(Supabase)로 전송되는 데이터</h3>
-        <p>이용자가 게임 내 <strong>실험실 투표(재미·난이도·풀이 느낌 평가)</strong>, <strong>문제 제보(버그 리포트)</strong> 또는 온라인 기록 집계 기능을 사용할 때 아래 데이터가 암호화(HTTPS)되어 전송될 수 있습니다.</p>
-        <ul>
-          <li><strong>익명 식별 정보</strong>: 중복 투표 방지 및 제보 처리를 위해 앱에서 임의 생성한 고유 식별자(UUID/설치 식별값, 개인 식별 불가)</li>
-          <li><strong>게임 플레이 및 평가 정보</strong>: 스테이지 ID, 편성(Loadout) ID, 클리어 여부, 사용 턴 수, 별점/난이도/느낌 투표 값</li>
-          <li><strong>이용자 작성 제보 내용</strong>: 문제 제보 시 이용자가 직접 입력한 설명 문구 및 이용자가 첨부에 동의한 재현 자료(행동 경로·턴 상태·앱 버전·언어 설정·화면 크기 정보)</li>
-        </ul>
+        <p>일반 플레이에서는 화면 터치 좌표나 전체 이동 경로를 분석 서버에 보내지 않습니다. 서버 기록은 한 설치의 활동을 이어 볼 수 있으므로 완전히 익명인 정보로 취급하지 않습니다. 앱의 분석 코드가 이메일·GPS 위치·광고 ID를 Supabase 이벤트 항목으로 보내지는 않습니다.</p>
+        <h3>이용자가 제출하는 평가·제보</h3>
+        <p>실험실에서 평가를 제출하면 별점·난이도·익숙함·의견과 해당 스테이지·편성·턴 등의 상황 정보가 전송됩니다. 문제를 제보하면 이용자가 작성한 기대 결과·실제 결과·분류와 상황 정보가 전송됩니다. 재현 자료 첨부를 선택한 경우에만 행동 경로·턴 상태 등 상세 자료를 함께 보냅니다. 자유 입력란에는 이름이나 연락처 같은 개인정보를 적지 말아 주세요.</p>
       </section>
 
       <section>
-        <h2>3. 데이터 수집 및 이용 목적</h2>
-        <ul>
-          <li>신규 및 기존 퍼즐 스테이지의 체감 난이도·재미 평가 집계 및 밸런스 개선</li>
-          <li>이용자가 제보한 게임 진행 오류·조작 문제·다국어 표시 문제의 재현 및 수정</li>
-          <li>앱 안정성 확보 및 업데이트 품질 개선</li>
-        </ul>
+        <h2>3. Android 광고와 Google</h2>
+        <p>현재 APK는 <strong>Google 테스트 광고만</strong> 사용하며 실제 수익 광고는 활성화하지 않았습니다. 전체 힌트와 배터리 충전에는 보상형 광고, 두 번째 도시부터 새로운 이야기 클리어에는 전면광고를 사용합니다. 배너 광고는 표시하거나 요청하지 않습니다.</p>
+        <p>테스트 광고를 사용하더라도 Google Mobile Ads SDK 및 동의 관리 기능이 동작합니다. Google의 설명에 따르면 이 SDK는 광고 제공·분석·부정 사용 방지를 위해 IP 주소, 앱 이용 상호작용, 진단 정보, 광고 ID를 포함할 수 있는 기기 식별자를 자동으로 수집·공유할 수 있습니다. 이 정보는 Google의 정책에 따라 처리됩니다. 앱은 광고 관련 동의 상태를 확인하고 필요한 경우 동의 화면을 표시합니다. 제공되는 경우 앱 설정에서 광고 개인정보 선택 화면을 다시 열 수 있습니다.</p>
+        <p>이 방침의 Google 광고 데이터와 2절의 Supabase 게임 분석 데이터는 서로 다른 처리 경로입니다. 게임 운영자는 Supabase에 저장한 평가·제보 내용이나 플레이 요약을 Google에 광고 타깃팅 자료로 보내지 않습니다. 자세한 내용은 <a href="https://developers.google.com/admob/android/privacy/play-data-disclosure">Google 광고 SDK 데이터 안내</a>와 <a href="https://policies.google.com/privacy">Google 개인정보처리방침</a>을 참고해 주세요.</p>
       </section>
 
       <section>
-        <h2>4. 제3자 제공 및 처리 위탁 (클라우드 데이터베이스)</h2>
-        <p>본 앱은 이용자의 데이터를 외부 광고 네트워크나 제3자 마케터에게 판매하거나 공유하지 않습니다. 다만, 안정적인 데이터 저장을 위해 아래와 같이 클라우드 데이터베이스 인프라 서비스를 이용합니다.</p>
+        <h2>4. 이용 목적 및 외부 서비스</h2>
+        <p>플레이 통계는 접속·재방문·스테이지 난이도·힌트·광고/배터리 기능의 작동을 파악하고 게임을 개선하는 데 사용합니다. 평가와 제보는 스테이지 조정 및 오류 재현·수정에 사용합니다. 전송은 HTTPS(TLS)로 암호화됩니다.</p>
         <table>
-          <thead>
-            <tr>
-              <th>수탁업체 (Service Provider)</th>
-              <th>위탁 업무 내용 (Purpose)</th>
-              <th>전송 방식 및 보관</th>
-            </tr>
-          </thead>
+          <thead><tr><th>서비스</th><th>처리 내용</th></tr></thead>
           <tbody>
-            <tr>
-              <td><strong>Supabase, Inc.</strong></td>
-              <td>스테이지 평가·투표 데이터 및 문제 제보(버그 리포트) 데이터베이스 호스팅·저장</td>
-              <td>HTTPS(TLS) 암호화 전송 후 클라우드 DB 보관</td>
-            </tr>
+            <tr><td>Supabase</td><td>게임 분석 이벤트·집계·평가·제보의 수신 및 데이터베이스 보관. 서비스 제공 과정에서 연결 정보도 처리될 수 있습니다. <a href="https://supabase.com/privacy">Supabase 개인정보 안내</a></td></tr>
+            <tr><td>Google Mobile Ads / UMP</td><td>Android 테스트 광고 제공, 광고 관련 데이터·동의 정보 처리. <a href="https://policies.google.com/privacy">Google 개인정보처리방침</a></td></tr>
           </tbody>
         </table>
       </section>
 
       <section>
-        <h2>5. 보유 기간 및 삭제·파기 방법</h2>
+        <h2>5. 보관·삭제 및 이용자 요청</h2>
         <ul>
-          <li><strong>기기 내 데이터</strong>: 기기에서 앱을 삭제하거나 기기 설정에서 '저장공간 → 데이터 삭제'를 실행하면 즉시 파기됩니다.</li>
-          <li><strong>서버 전송 데이터</strong>: 수집 및 이용 목적이 달성되거나 서비스 종료 시 지체 없이 파기합니다.</li>
-          <li><strong>삭제 요청 안내</strong>: 이용자가 직접 제출한 문제 제보나 투표 기록의 삭제를 원하시는 경우, 아래 문의처 이메일로 요청해 주시면 확인 후 지체 없이 삭제 조치합니다.</li>
+          <li><strong>기기 저장 정보:</strong> 앱 삭제 또는 앱 데이터 삭제 시 기기 내 진행·설정·대기열이 삭제됩니다. 이미 서버로 전송된 정보는 자동 삭제되지 않습니다.</li>
+          <li><strong>서버의 원본 이벤트:</strong> 수신 후 30일이 지나면 정리합니다. 종료된 시도의 상세 JSON도 30일 뒤 축약하지만 시도 ID와 결과는 남을 수 있습니다.</li>
+          <li><strong>집계·평가·제보 등:</strong> 일별 통계, 설치별 클리어·힌트 기록, 평가·제보 및 중복 방지 정보는 게임 운영·품질 개선에 필요한 기간 동안 보관하고, 목적 종료 또는 서비스 종료 시 삭제·비식별화합니다. 법령상 보존 의무가 있으면 해당 기간을 따릅니다.</li>
         </ul>
+        <p>전송된 정보의 확인·삭제를 원하면 아래 이메일로 요청해 주세요. 계정이 없는 게임이므로 요청한 기록을 식별·확인할 수 있는 정보를 안내받아 가능한 범위에서 처리합니다. 앱 삭제만으로 서버 기록의 삭제를 요청한 것으로 처리되지는 않습니다. Google이 처리하는 광고 정보와 선택은 Google의 안내 및 기기 광고 설정을 이용해 주세요.</p>
       </section>
 
       <section>
-        <h2>6. 아동의 개인정보 보호</h2>
-        <p>본 앱은 아동을 포함한 모든 연령의 이용자로부터 실명, 주소, 연락처 등 개인식별정보를 고의로 수집하지 않습니다. 만약 보호자 동의 없이 아동의 개인식별정보가 제보 텍스트 등을 통해 제출된 사실을 인지하는 경우 즉시 해당 데이터를 삭제합니다.</p>
+        <h2>6. 아동 및 방침 변경</h2>
+        <p>앱은 아동에게 실명·연락처를 입력하도록 요구하지 않습니다. 제보에 아동의 개인정보가 포함된 사실을 알게 되면 아래 연락처로 알려 주세요. 확인 후 적절히 삭제 처리합니다. 수집 항목이나 광고 운영 방식이 달라지면 이 방침을 갱신하고 최종 수정일을 표시합니다.</p>
       </section>
 
       <section>
-        <h2>7. 문의처 (개인정보 보호책임자)</h2>
-        <p>개인정보처리방침과 관련한 문의, 의견 또는 데이터 삭제 요청은 아래 연락처로 문의해 주시기 바랍니다.</p>
-        <ul>
-          <li><strong>개발자 / 운영팀</strong>: BLACKOUT CITY Development Team</li>
-          <li><strong>이메일 (Contact Email)</strong>: <a href="mailto:sobitechlab@gmail.com">sobitechlab@gmail.com</a></li>
-        </ul>
+        <h2>7. 문의</h2>
+        <p>데이터 처리, 열람·삭제 요청 및 이 방침에 관한 문의: <strong>BLACKOUT CITY 개발팀</strong> · <a href="mailto:sobitechlab@gmail.com">sobitechlab@gmail.com</a></p>
       </section>
     </div>
 
@@ -223,42 +210,64 @@
     <!-- ENGLISH SECTION -->
     <div id="en" lang="en">
       <section>
-        <h2>1. Overview (English)</h2>
-        <p><strong>BLACKOUT CITY</strong> ("the App") respects your privacy and complies with applicable privacy laws and Google Play Developer Program Policies. The App can be played without account registration or sign-in and does not collect personally identifiable information (PII) such as your name, email address, phone number, or precise geographic location.</p>
+        <h2>1. Scope</h2>
+        <p><strong>BLACKOUT CITY</strong> (the “App”) is a puzzle game playable without an account. This policy covers on-device progress, gameplay analytics, ratings and bug reports, and Android ads. We do not ask for a name, email address, phone number, or precise location to play. Installation-linked activity and text you submit may nevertheless be personal data.</p>
       </section>
 
       <section>
-        <h2>2. Data We Collect and Transmit</h2>
-        <h3>A. Local On-Device Data (Not Transmitted)</h3>
+        <h2>2. On-device data and Supabase uploads</h2>
+        <h3>Stored on your device</h3>
+        <p>The App stores stage progress and best turns, battery status, language, audio, vibration and display settings, and the status of submitted feedback. It does not copy your entire progress save to the server. When offline, it stores analytics and feedback in a local queue and retries when the App is reopened or resumed. It does not upload that queue while fully closed.</p>
+        <h3>Automatically uploaded during play</h3>
+        <p>In the current beta, the App sends these gameplay records to <strong>Supabase</strong> over HTTPS without requiring you to press a submit button:</p>
         <ul>
-          <li>Stage completion progress and best turn records</li>
-          <li>Language preferences, audio volume, vibration, and motion settings</li>
+          <li>App launches and sessions; stage starts, ends and first/repeat clears; story starts and ends.</li>
+          <li>Stage and rules version, game mode, App version and language, attempt time and outcome, and summaries such as turns, moves, abilities, undos, hints and active play time.</li>
+          <li>Ad requests, impressions, dismissal, reward and failure; battery use, blocking and ad recharge; upload-queue health.</li>
+          <li>Random installation token and session, attempt and request IDs and sequence numbers to link events from one installation and prevent duplicates. The server stores a SHA-256 hash of the installation token, not the original token, as its installation identifier.</li>
         </ul>
-        <h3>B. Data Transmitted to Supabase Database</h3>
-        <p>When you submit stage ratings/votes in the Laboratory, send an issue report, or use online gameplay aggregation features, the following non-personal data may be transmitted securely over HTTPS:</p>
-        <ul>
-          <li><strong>Anonymous Identifier</strong>: A randomly generated app installation/session UUID used solely to prevent duplicate votes and manage reports (cannot identify you personally).</li>
-          <li><strong>Gameplay &amp; Rating Data</strong>: Stage ID, loadout ID, completion status, turn count, and optional fun/difficulty/feel ratings.</li>
-          <li><strong>User-Submitted Issue Reports</strong>: Text descriptions you voluntarily enter when reporting a problem, along with optional reproduction metadata (move history, turn state, app version, locale, and viewport size) if you choose to attach it.</li>
-        </ul>
+        <p>Ordinary gameplay analytics do not include tap coordinates or a full move-by-move path. Because records can be linked within one installation, we do not describe them as completely anonymous. The App's analytics code does not send email, GPS location or advertising ID as Supabase event fields.</p>
+        <h3>Ratings and reports you submit</h3>
+        <p>A Laboratory rating sends stars, difficulty, familiarity, your note and related stage, loadout and turn context. A bug report sends the category, expected and actual behavior you enter, plus context. Detailed replay data, such as moves and turn state, is sent only if you choose to attach it. Please avoid entering names or contact details in free-text fields.</p>
       </section>
 
       <section>
-        <h2>3. Purpose of Data Processing &amp; Service Providers</h2>
-        <ul>
-          <li>Evaluating puzzle stage difficulty and player enjoyment to improve game design</li>
-          <li>Reproducing and fixing reported bugs, UI layout issues, and localization errors</li>
-          <li><strong>Backend Infrastructure Provider</strong>: Data is transmitted via HTTPS (TLS) encryption and stored using <strong>Supabase, Inc.</strong> cloud database services. We do not sell or share your data with third-party advertisers.</li>
-        </ul>
+        <h2>3. Android ads and Google</h2>
+        <p>The current APK uses <strong>Google test ads only</strong>; live revenue ads are disabled. Rewarded ads are used for a final full hint and battery recharge. An interstitial is used after a new story clear from the second city onward. Banner ads are neither requested nor displayed.</p>
+        <p>The Google Mobile Ads SDK and consent features still run with test ads. Google says the SDK may automatically collect and share IP address, app interactions, diagnostic information, and device identifiers that can include advertising ID for advertising, analytics and fraud prevention. Google processes that data under its own policies. The App checks ad consent status, shows a consent form when required, and lets you reopen ad privacy choices in settings when available.</p>
+        <p>Google ad data is separate from the Supabase gameplay data in section 2. We do not send Supabase ratings, report text or gameplay summaries to Google for ad targeting. See <a href="https://developers.google.com/admob/android/privacy/play-data-disclosure">Google's Mobile Ads SDK disclosure</a> and <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
       </section>
 
       <section>
-        <h2>4. Data Retention, Deletion &amp; Contact</h2>
+        <h2>4. Purposes and service providers</h2>
+        <p>We use gameplay statistics to understand launches, return visits, stage difficulty, hints, and how ad and battery features work, and to improve the game. We use ratings and reports to adjust stages and reproduce and fix issues. Transfers use HTTPS (TLS).</p>
+        <table>
+          <thead><tr><th>Service</th><th>Processing</th></tr></thead>
+          <tbody>
+            <tr><td>Supabase</td><td>Receives and stores game events, aggregates, ratings and reports. Connection data may also be processed to provide the service. <a href="https://supabase.com/privacy">Supabase privacy notice</a></td></tr>
+            <tr><td>Google Mobile Ads / UMP</td><td>Serves Android test ads and processes ad-related data and consent information. <a href="https://policies.google.com/privacy">Google Privacy Policy</a></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>5. Retention, deletion and requests</h2>
         <ul>
-          <li><strong>Local Data</strong>: Deleted immediately when you uninstall the App or clear app storage on your device.</li>
-          <li><strong>Server Data &amp; Deletion Requests</strong>: Retained only as long as necessary to fulfill the purposes outlined above. To request deletion of any submitted feedback or issue report, please contact us at the email below.</li>
-          <li><strong>Contact Email</strong>: <a href="mailto:sobitechlab@gmail.com">sobitechlab@gmail.com</a></li>
+          <li><strong>On-device data:</strong> Uninstalling the App or clearing its data removes local progress, settings and queued uploads. It does not automatically erase records already received by the server.</li>
+          <li><strong>Raw server events:</strong> Removed 30 days after receipt. Detailed JSON for completed attempts is reduced after 30 days, while attempt IDs and outcomes may remain.</li>
+          <li><strong>Aggregates, ratings and reports:</strong> Daily statistics, installation-level clear and hint records, ratings, reports and deduplication data are kept while needed to operate and improve the game, then deleted or de-identified when that purpose or the service ends, subject to any legal retention requirement.</li>
         </ul>
+        <p>To ask about or request deletion of uploaded data, email us below. As the game has no account, we will explain what information is needed to identify and verify the relevant record and act where possible. Uninstalling alone does not submit a server deletion request. For Google ad data and choices, consult Google's notices and your device's ad settings.</p>
+      </section>
+
+      <section>
+        <h2>6. Children and changes</h2>
+        <p>The App does not ask children to enter a name or contact details. If you learn that a child's personal information was included in a report, contact us below; we will review and delete it as appropriate. If data practices or ad operation change, we will update this policy and its last-updated date.</p>
+      </section>
+
+      <section>
+        <h2>7. Contact</h2>
+        <p>For questions or access/deletion requests: <strong>BLACKOUT CITY Development Team</strong> · <a href="mailto:sobitechlab@gmail.com">sobitechlab@gmail.com</a></p>
       </section>
     </div>
 
